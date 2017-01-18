@@ -1,0 +1,25 @@
+.Dressed-Octopus{
+	position: relative;
+	margin-top: 100px;
+	margin-left: 150px;
+
+}
+
+#Octopus{
+	position: absolute;
+	left: 350px;
+	top: 200px;
+
+}
+
+#hat{
+	position: relative;
+	left: 340px;
+	top: 130px;
+}
+
+#glasses{
+	position: relative;
+	left: 393px;
+	top: 128px;
+}
