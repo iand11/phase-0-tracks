@@ -1,0 +1,29 @@
+section#contact-info {
+font-size: .8em;
+
+}
+
+.job {
+
+background-color: #e9e5dc;
+border-radius: 10px;
+padding: 15px;
+margin-top: 15px;
+
+}
+
+ul.accomplishment {
+font-size: .8em;
+
+}
+
+ul.accomplishment:hover {
+
+	background-color: lightblue;
+}
+
+section#personal-objective > h2 {
+ color: red;
+
+
+}
