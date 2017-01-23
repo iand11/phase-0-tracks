@@ -1,32 +1,65 @@
 blockquote {
-  border-left: 5px solid blue;
-  padding: 15px;
-  margin-left: 0px;
+border-left: 5px solid blue;
+padding: 15px;
+margin-left: 0px;
 }
-
 cite {
-  display: block;
-  margin-top: 10px;
+display: block;
+margin-top: 10px;
 }
-
 #external-links ul {
-  list-style-type: none;
-  padding-left: 0px;
+list-style-type: none;
+padding-left: 0px;
 }
-
 /* you're welcome to edit the
-image, figure, and figcaption CSS if you'd like, 
+image, figure, and figcaption CSS if you'd like,
 but it's optional! */
 img {
-  width: 100%;
+width: 100%;
 }
-
 figure {
-  margin-left: 0px;
-  margin-right: 0px;
+margin-left: 0px;
+margin-right: 0px;
+}
+figcaption {
+font-style: italic;
+text-align: right;
+}
+body { max-width: 960px; min-width: 319; }
+main {width: 70%;
+display: inline-block; padding-left: 50px;
+}
+#external-links {width: 20%;
+display: inline-block; vertical-align: top; padding-left: 10px;}
+
+
+@media screen and (max-width: 652px) {
+  #external-links; {
+    display: block;   margin: auto; text-align: center;
+  }
 }
 
-figcaption {
-  font-style: italic;
-  text-align: right;
+@media (max-width: 652px) {
+  #external-links {
+    margin: auto;  width: 60%; text-align: center; display: block;
+
+  }
+  main { display: block; text-align: left; padding-left: 15% }
+  #header {text-align: center;}
+}
+
+
+@media screen and (max-width: 1080px) {
+  #external-links; {
+    display: block;   margin: auto; text-align: center;
+  }
+}
+
+@media (max-width: 1080px) {
+  #external-links {
+    margin: auto;  width: 60%; text-align: center; display: block;
+
+  }
+  main { display: block; text-align: left; padding-left: 16% }
+  #header {text-align: center;}
 }
