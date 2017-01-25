@@ -10,7 +10,7 @@ def employee_questions
 			current_year = 2017
 	
 			puts "What is your name?"
-			namer = gets.chomp 
+			name = gets.chomp 
 		
 			puts "How old are you?"
 			age = gets.chomp.to_i 
@@ -30,3 +30,26 @@ def employee_questions
 				puts "any more allergies?"
 				allergies = gets.chomp
 				end
+
+			if name == "Drake Cula" || name == "Tu Fang" && age = current_year - year_born && garlic_answer == "Y" && health_insurance == "Y"
+				puts "Def Vamp"
+		
+			elsif age != current_year - year_born && garlic_answer == "N" || health_insurance == "N"
+				puts "Probably a vampire"
+		
+			elsif age != current_year - year_born && garlic_answer == "N" && health_insurance == "N"
+				puts "Almost certainly a vampire"
+		
+			elsif age = current_year - year_born && garlic_answer == "Y" && health_insurance == "Y" && allergies =="done"
+				puts "Probably not a vampire"
+			
+			elsif allergies == "sunshine"
+				puts "Probably a vampire"
+				
+			else 
+				puts "Results inconclusive"
+				
+			end
+	end
+
+end
