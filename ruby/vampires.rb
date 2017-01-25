@@ -17,13 +17,32 @@ def employee_questions
 		
 			puts "What year were you born?"
 			year_born = gets.chomp.to_i 
-		
+		    
+		    valid_input = false 
+		    until valid_input
 			puts "We have garlic in our cafeteria, should we get some for you? Y/N"
 			garlic_answer = gets.chomp.upcase 
+				if garlic_answer == "Y" || garlic_answer == "N"
+					valid_input = true 
+				else
+					puts "Please type Y or N"
+				end
 
+			end
+
+			valid_input = false 
+		    until valid_input
 			puts "Would you like to enroll in the companies health insurance? Y/N"
 			health_insurance = gets.chomp.upcase
-			
+				if health_insurance == "Y" || health_insurance == "N"
+					valid_input = true 
+				else
+						puts "Please type Y or N"
+				end
+
+			end
+
+		
 			puts "List any allergies you have. Once finished type done"
 			allergies = gets.chomp 
 				until allergies =="done" || allergies == "sunshine"
@@ -51,5 +70,5 @@ def employee_questions
 				
 			end
 	end
-
+puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends."
 end
