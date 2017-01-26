@@ -15,3 +15,11 @@ end
 #decrypt function
 #for every letter in the word move the letter to the previous letter in the alphabet
 #print new word
+
+def alphabet_finder(x)
+  alphabet = "abcdefghijklmnopqrstuvwxyz"
+  position = alphabet.index(x)
+  position -=1 
+  char = alphabet[position]
+end
+puts alphabet_finder("b")
