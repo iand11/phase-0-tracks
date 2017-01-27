@@ -1,0 +1,62 @@
+p{
+  font-family: 'Roboto', 'Noto', sans-serif;
+}
+header {
+  text-align:center;
+  padding-bottom:30px;
+  padding-top:30px;
+  margin-top:auto;
+  margin-bottom:0px;
+  background-image: url(http://webdesignerdublin.ie/wp-content/uploads/layerslider/My-first-slider/layer-4.jpg)
+}
+
+header > p {
+  text-align:left;
+  padding-top:15px;
+  font-family: 'Roboto', 'Noto', sans-serif;
+  font-size: 20px;
+}
+
+section.column-1 {
+  display:inline-block;
+  width:45%;
+  vertical-align:top;
+  padding:10px;
+}
+li:hover{
+  background-color:lightgrey;
+  color:white;
+}
+section.column-1 > h2 {
+  font: arial;
+  
+}
+
+section.column-2 > h2 {
+  font: arial;
+}
+
+section.column-2 {
+  display:inline-block;
+  width:45%;
+  vertical-align:top;
+  padding:10px;
+
+}
+.column-1 > article > details > summary{
+  background-color:#e6e6e6;
+   padding:5px;
+   margin:2px;
+}
+
+.column-2 > article > details > summary {
+  background-color:#e6e6e6;
+  padding:5px;
+  margin:2px;
+}
+footer {
+  text-align:center;
+  font-size:30px;
+  padding-top:40px;
+  font-family: 'Roboto', 'Noto', sans-serif;
+}
