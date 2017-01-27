@@ -22,4 +22,37 @@ def alphabet_finder(x)
   position -=1 
   char = alphabet[position]
 end
-puts alphabet_finder("b")
+
+
+def decrypt(string)
+  index= 0 
+  new_word = ""
+  while index < string.length
+  x = string[index]
+  new_word += alphabet_finder(x)
+  index += 1
+  end
+  puts new_word
+end
+
+valid_input = false
+until valid_input
+
+puts "Do you want to encrypt of decrypt a password?"
+encrypt_decrypt = gets.chomp
+	if encrypt_decrypt == "encrypt"
+		valid_input = true
+		puts "What is the password you want to encrypt?"
+		password_encrypt = gets.chomp 
+			puts "here is your password encrypted" 
+				encrypt(password_encrypt)
+	elsif encrypt_decrypt = "decrypt"
+		valid_input = true
+		puts "What is the password you want to decrypt?"
+		password_decrypt = gets.chomp
+			puts "here is your password decrypted"
+				decrypt(password_decrypt)
+	else
+		puts "Please select either encrypt or decrypt"
+	end
+end
