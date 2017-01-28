@@ -1,0 +1,42 @@
+- find out what floor you are currently on
+- if the destination floor is above you press the up button
+- if the destination floor is below you press the down button
+- wait until the elevator door opens
+- if people are getting off wait until they are done and enter
+- walk straight into the elevator
+- locate where the floor buttons are
+- turn to face the buttons
+- press the button of the destination floor
+- if the elevator stops before the destination floor move out of the way of the people getting on or off the elevator
+- once the elevator reaches the destination floor step out of the elevator 
+
+
+Making coffee (with Nespresso)
+
+- check that Nespresso machine is plugged in
+- if machine is not plugged in, plug in
+- check that the water container is filled
+- if the water container is not filled
+	- remove the water container
+	- bring the water container over to the sink
+	- open the water container
+	- fill with water (cold water)
+	- bring back to the machine
+	- put back in place
+- check cabinet for coffee mug
+- if there is no mug in the cabinet
+	- check if the dishes in the dishwasher are clean
+	- if dishes are clean get mug from dishwasher
+	- if dishes are not clean
+		- take a dirty mug
+		- hand wash dirty mug in sink
+		- bring clean mug over to Nespresso machine
+- put mug on the tray of the machine
+- open up the top of the machine
+- place Nespresso capsule in machine
+- close top of the machine
+- lock the machine
+- press the coffee mug button
+- wait until the machine stops pouring coffee into the mug
+- remove the mug
+- enjoy a hot cup of coffee
