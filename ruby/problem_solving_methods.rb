@@ -34,3 +34,22 @@ def fib(integer)
 	return array
 	end
 end 
+
+
+def bubble_sort(array)
+	swap = false
+	count = 0 
+	n = array.length
+	while count < n -1
+		if  array[count] > array[count+1]
+			array[count], array[count+1] = array[count+1], array[count]
+		swap = true 
+		end
+	count+=1
+	end
+	if swap == true 
+	  bubble_sort(array)
+	else  
+	return array
+	end 
+end
