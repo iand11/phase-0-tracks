@@ -17,13 +17,13 @@ class VirusPredictor
   end
 #responsible for declaring predicted_deaths and speed_of_spread methods and their arguments.
   def virus_effects
-    predicted_deaths(@population_density, @population, @state)
-    speed_of_spread(@population_density, @state)
+    predicted_deaths
+    speed_of_spread
   end
 
   private
 #responsible for taking population_density, population, and state and calling them to produce a value for number_of_deaths for each state.
-  def predicted_deaths(population_density, population, state)
+  def predicted_deaths
     # predicted deaths is solely based on population density
     if @population_density >= 200
       number_of_deaths = (@population * 0.4).floor
@@ -41,7 +41,7 @@ class VirusPredictor
 
   end
 #responsible for taking population_density and state and providing a value for speed in months that the outbreak will spread for each state.
-  def speed_of_spread(population_density, state) #in months
+  def speed_of_spread #in months
     # We are still perfecting our formula here. The speed is also affected
     # by additional factors we haven't added into this functionality.
     speed = 0.0
