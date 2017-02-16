@@ -1,7 +1,7 @@
 # Virus Predictor
 
-# I worked on this challenge [by myself, with: ].
-# We spent [#] hours on this challenge.
+# I worked on this challenge [by myself, with: Shea Thomas ].
+# We spent [2] hours on this challenge.
 
 # EXPLANATION OF require_relative
 # Require_relative is used to call data from separate files, allowing access to data from the same directory. Require is used to for ruby modules and gems.
