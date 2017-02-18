@@ -15,3 +15,6 @@ return new_array.join("")
 
 var imNew = true
 
+if (imNew){
+console.log (reverse("abcd"))
+}
