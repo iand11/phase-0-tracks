@@ -12,3 +12,6 @@ new_array = []
   }
 return new_array.join("")
 }
+
+var imNew = true
+
