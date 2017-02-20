@@ -1,0 +1,55 @@
+1)
+
+SELECT * FROM musicians;
+
+1|ian|31|true|1
+2|ali|31|false|3
+3|john|30|true|3
+4|mike|32|true|2
+
+2)
+UPDATE musicians SET name="ian...yes the name is ian" WHERE name="ian";
+SELECT * FROM musicians;
+
+1|ian...yes the name is ian|31|true|1
+2|ali|31|false|3
+3|john|30|true|3
+4|mike|32|true|2
+
+3)
+SELECT musicians.name, musicians.age, musicians.talented, instrument.name FROM musicians JOIN instrument ON instrument_id = instrument.id;
+
+ian...yes the name is ian|31|true|guitar
+ali|31|false|drums
+john|30|true|drums
+mike|32|true|bass
+
+4)
+SELECT musicians.name, instrument.name FROM musicians JOIN instrument on instrument_id = instrument.id;
+
+ian...yes the name is ian|guitar
+ali|drums
+john|drums
+mike|bass
+
+5)
+DELETE FROM musicians WHERE name = "ali";
+SELECT * FROM musicians;
+
+1|ian...yes the name is ian|31|true|1
+3|john|30|true|3
+4|mike|32|true|2
+
+
+SELECT musicians.name, musicians.age, musicians.talented, instrument.name FROM musicians INNER JOIN instrument ON instrument_id = instrument.id;
+
+ian...yes the name is ian|31|true|guitar
+john|30|true|drums
+mike|32|true|bass
+
+SELECT musicians.name, musicians.age, musicians.talented, instrument.name FROM musicians LEFT JOIN instrument ON instrument_id = instrument.id;
+
+ian...yes the name is ian|31|true|guitar
+john|30|true|drums
+mike|32|true|bass
+sqlite> 
