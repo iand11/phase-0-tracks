@@ -37,7 +37,7 @@ create_table_reviews = <<-SQL
 SQL
 
 create_table_mountains = <<-SQL
-	CREATE TABLE IF NTO EXISTS mountains (
+	CREATE TABLE IF NOT EXISTS mountains (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR(255)
 	)
@@ -45,4 +45,4 @@ SQL
 
 db.execute(create_table_users)
 db.execute(create_table_reviews)
-# db.execute(create_table_mountains)
+db.execute(create_table_mountains)
