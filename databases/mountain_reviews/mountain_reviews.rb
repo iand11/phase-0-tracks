@@ -44,3 +44,5 @@ create_table_mountains = <<-SQL
 SQL
 
 db.execute(create_table_users)
+db.execute(create_table_reviews)
+# db.execute(create_table_mountains)
