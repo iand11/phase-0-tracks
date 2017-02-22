@@ -27,6 +27,7 @@ create_table_reviews = <<-SQL
 	)
 SQL
 
+db.results_as_hash = true
 create_table_mountains = <<-SQL
 	CREATE TABLE IF NOT EXISTS mountains (
 	id INTEGER PRIMARY KEY,
@@ -34,9 +35,10 @@ create_table_mountains = <<-SQL
 	)
 SQL
 
+
 # db.execute(create_table_users)
 # db.execute(create_table_reviews)
-# db.execute(create_table_mountains)
+db.execute(create_table_mountains)
 
 def add_user(db, name, email, phone)
 	db.execute("INSERT INTO users (name, email, phone) VALUES (?,?,?)", [name, email, phone])
@@ -52,8 +54,26 @@ end
 # add_mountains(db, "Northstar")
 # add_mountains(db, "Squaw")
 
-norther_california_mountains = ['Homewood', 'Sierra-at-Tahoe', 'Tahoe Donner', 'Soda Springs', 'Bear Valley', 'Sugar Bowl', 'Boreal Mountain', 'Mammoth', 'China Peak']
+norther_california_mountains = ['Kirkwood', 'Heavenly', 'Northstar', 'Squaw', 'Homewood', 'Sierra_at_Tahoe', 'Tahoe_Donner', 'Soda_Springs', 'Bear_Valley', 'Sugar_Bowl', 'Boreal_Mountain', 'Mammoth', 'China_Peak']
 norther_california_mountains.each do |item|
 	add_mountains(db, item)
 end 
+
+# puts  db.execute("SELECT * FROM mountains")
+# puts db.execute("SELECT * FROM users")
+
+
+puts "Please select a mountain from the list:"
+puts  norther_california_mountains
+current_mount = gets.chomp.capitalize 
+
+
+x = db.execute("SELECT * FROM mountains WHERE name = '#{current_mount}'")
+mountain_number =  x[0][0]
+
+
+
+
+
+
 
