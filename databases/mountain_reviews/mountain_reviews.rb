@@ -49,6 +49,10 @@ end
 def add_mountains(db, mountain_name)
 	db.execute("INSERT INTO mountains (name) VALUES (?)", [mountain_name])
 end 
+
+def add_review(db, name, mountain, date, snowing, powder, ice, long_lines, sunshine, comment)
+	db.execute("INSERT INTO reviews (name, mountain, date, snowing, powder, ice, long_lines, sunshine, comment VALUES (?,?,?,?,?,?,?,?,?)", [name, mountain, date, snowing, powder, ice, long_lines, sunshine, comment])
+end 
 # add_mountains(db, "Kirkwood")
 # add_mountains(db, "Heavenly")
 # add_mountains(db, "Northstar")
@@ -59,11 +63,23 @@ norther_california_mountains = ['Kirkwood', 'Heavenly', 'Northstar', 'Squaw', 'H
 # 	add_mountains(db, item)
 # end 
 
-# puts  db.execute("SELECT * FROM mountains")
+# p db.execute("SELECT * FROM mountains")
 # puts db.execute("SELECT * FROM users")
 
-current_mount = ''
 
+
+
+#-------------------------------------------------------------------------------------------------------------
+
+# DRIVER CODE
+
+
+user_name=''
+user_email=''
+user_phone_number=''
+
+
+#info for users table
 puts "Welcome to Norther California Mountain Reviews"
 puts "\n"
 puts "Please enter your name: "
@@ -77,23 +93,103 @@ user_phone_number = gets.chomp
 puts "\n"
 puts "\n"
 
+
+ 
 add_user(db, user_name, user_email, user_phone_number)
-puts db.execute("SELECT * FROM users") 
+a = db.execute("SELECT * FROM users WHERE name = '#{user_name}' AND email = '#{user_email}' AND phone = '#{user_phone_number}' ")
+user_id_number = a[0][0]
+p user_id_number
+# puts db.execute("SELECT * FROM users") 
 
 
 
-loop do
-puts "Please select a mountain from the list:"
-puts  norther_california_mountains
-current_mount = gets.chomp.capitalize 
-break if norther_california_mountains.include? current_mount
-p '|----------------------------------------------------------------------|'
-end 
+#info for mountains table
+# current_mount = ''
+
+# loop do
+# puts "#{user_name} please select a mountain from the list:"
+# puts "\n"
+# puts  norther_california_mountains
+# current_mount = gets.chomp.capitalize 
+# break if norther_california_mountains.include? current_mount
+# p '|----------------------------------------------------------------------|'
+# end 
 
 
-x = db.execute("SELECT * FROM mountains WHERE name = '#{current_mount}'")
-mountain_number =  x[0][0]
+# x = db.execute("SELECT * FROM mountains WHERE name = '#{current_mount}'")
+# mountain_number =  x[0][0]
+# mountain_name = x[0][1]
 
+
+#info for reviews table
+# puts "#{name} you're at #{mountain_name}"
+# puts "Tell me about the mountain..."
+# puts "\n"
+
+
+# snowing_question =''
+# powder_question =''
+# ice_question = ''
+# lines_question = ''
+# sun_question = ''
+
+#snowing
+# loop do 
+# 	puts "Is it snowing?"
+# 	snowing_question = gets.chomp.downcase
+# 	break if snowing_question == 'yes' || snowing_question == 'no'
+# 	puts "Please select yes or no"
+# end
+
+# #powder
+# if snowing_question =='yes'
+# 	powder_question = true && snowing_question = true
+# elsif snowing_question =='no'
+#     snowing_question = false
+#   loop do
+# 	puts "Is there powder?"
+# 	powder_question = gets.chomp.downcase
+#   break if powder_question == 'yes' || powder_question == 'no'
+#     puts "Please select yes or no"
+#   end 
+#     if powder_question == 'yes'
+#     	powder_question = true
+#     elsif powder_question == 'no'
+#     	powder_question = false 
+#     end
+# end 
+
+# #ice
+# loop do 
+# 	puts "Is there any ice?"
+# 	ice_question = gets.chomp 
+# 	break if ice_question == 'yes' || ice_question == 'no'
+# 	puts "Please select yes or no"
+# end 
+
+# #long lines
+# loop do 
+# 	puts "Are there long lines?"
+# 	lines_question = gets.chomp 
+# 	break if lines_question == 'yes' || lines_question == 'no'
+# 	puts "Please select yes or no"
+# end 
+
+# #sunshine
+# loop do 
+# 	puts "Is it sunny?"
+# 	sun_question = gets.chomp 
+# 	break if sun_question == 'yes' || sun_question == 'no'
+# 	puts "Please select yes or no"
+# end 
+
+# puts "Is there anything you would like to say about the mountain?"
+# puts "When done hit enter"
+# user_comments = gets.chomp
+
+
+ 
+			
 
 
 
