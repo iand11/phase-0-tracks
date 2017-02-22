@@ -1,0 +1,37 @@
+PAIRING 8.4 
+
+
+2. You've joined two tables before. How do you join three?
+
+COMMAND:
+sqlite> SELECT * FROM reviews INNER JOIN businesses ON reviews.business_id = businesses.id INNER JOIN users ON reviews.user_id = users.id;
+
+OUTPUT:
+1|5|it was a great wedding!|1|4|1|Grundy Hollow Wedding Chapel|4|Steven|Wonder
+2|3|it smelled like feet|2|1|2|Lotus Yoga|1|Bradford|Pit
+3|1|I got food poisoning...sad|3|2|3|Sushi World|2|Mandy|Kaling
+4|4|she did great work|4|3|4|Plumbing by Janet|3|Angela|Jolie
+
+
+—————————
+3. There are some repetitive columns if we choose to view all fields. Choose instead to just view the user's names, the business name, the star rating, and the comment.
+
+COMMAND:
+sqlite> SELECT reviews.stars, reviews.comment, businesses.name, users.First_Name, users.Last_Name FROM reviews INNER JOIN businesses ON reviews.business_id = businesses.id INNER JOIN users ON reviews.user_id = users.id;
+
+OUTPUT:
+5|it was a great wedding!|Grundy Hollow Wedding Chapel|Steven|Wonder
+3|it smelled like feet|Lotus Yoga|Bradford|Pit
+1|I got food poisoning...sad|Sushi World|Mandy|Kaling
+4|she did great work|Plumbing by Janet|Angela|Jolie
+
+
+—————————
+4. How do you view the data of all three tables for just one particular business? 
+
+COMMAND: 
+sqlite> SELECT * FROM reviews INNER JOIN businesses ON reviews.business_id = businesses.id INNER JOIN users ON reviews.user_id = users.id WHERE businesses.name = "Sushi World";
+
+OUTPUT:
+3|1|I got food poisoning...sad|3|2|3|Sushi World|2|Mandy|Kaling
+sqlite> 
