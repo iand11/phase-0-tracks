@@ -23,7 +23,9 @@ create_table_reviews = <<-SQL
 		ice VARCHAR(255),
 		lines VARCHAR(255),
 		sunshine VARCHAR(255),
-		comments VARCHAR(255)
+		comments VARCHAR(255),
+		FOREIGN KEY (user_id) REFERENCES users(id),
+		FOREIGN KEy (mountain_id) REFERENCES mountains(id)
 	)
 SQL
 
@@ -68,7 +70,7 @@ norther_california_mountains = ['kirkwood', 'heavenly', 'northstar', 'squaw', 'h
 # p db.execute("SELECT * FROM mountains")
 # puts db.execute("SELECT * FROM users")
 
-options = ['write a review', 'read reviews from a user', 'read reviews of a mountain', 'see if it is snowing', 'see if there is powder', 'see if there is ice', 'see if there are long lines', 'see if there are long lines']
+options = ['write a review', 'read reviews from a user', 'read reviews of a mountain', 'see if it is snowing', 'see if there is powder', 'see if there is ice', 'see if there are long lines',]
 
 
 
@@ -83,44 +85,53 @@ user_phone_number=''
 
 
 #info for users table
-puts "Welcome to Norther California Mountain Reviews"
-puts "\n"
-puts "Please enter your name: "
-user_name = gets.chomp
-puts "\n" 
-puts "Please enter your email: "
-user_email = gets.chomp 
-puts "\n"
-puts "Please enter your 10 digit phone number: "
-user_phone_number = gets.chomp
-puts "\n"
+puts "Welcome to Northern California Mountain Reviews"
 puts "\n"
 
-
- 
-add_user(db, user_name, user_email, user_phone_number)
-a = db.execute("SELECT * FROM users WHERE name = '#{user_name}' AND email = '#{user_email}' AND phone = '#{user_phone_number}' ")
-user_id_number = a[0][0]
-# p user_id_number
-# puts db.execute("SELECT * FROM users") 
 
 
 
 puts "\n"
 puts "\n"
 
+
+x = ''
+anything_esle = ''
 user_option = ''
+
+until anything_esle == 'no'
 
 loop do 
 puts "Please select what you would like to do from the list below: "
-option.each do |item|
+puts "\n"
+options.each do |item|
 	puts item
 end 
 user_option = gets.chomp 
 break if options.include? user_option
 end 
-	if user_option == "write a review"
 
+
+	
+	if user_option == "write a review"
+		puts "Please enter your name: "
+		user_name = gets.chomp
+		puts "\n" 
+		puts "Please enter your email: "
+		user_email = gets.chomp 
+		puts "\n"
+		puts "Please enter your 10 digit phone number: "
+		user_phone_number = gets.chomp
+		puts "\n"
+		puts "\n"
+
+
+ 
+		add_user(db, user_name, user_email, user_phone_number)
+		a = db.execute("SELECT * FROM users WHERE name = '#{user_name}' AND email = '#{user_email}' AND phone = '#{user_phone_number}' ")
+		user_id_number = a[0][0]
+		# p user_id_number
+		# puts db.execute("SELECT * FROM users") 
 		#info for mountains table
 		current_mount = ''
 		
@@ -236,41 +247,228 @@ end
 			current_review.each do |item|
 				puts  item
 			end
-		else 
-			puts "Ok thanks for taking part in our experiment!" 
 		end 
+			puts "Would you like to do anything else?"
+			puts "yes or no"
+			anything_esle = gets.chomp.downcase
+		
 
 	elsif user_option == 'read reviews from a user'
+	loop do 
 		selection_of_user = ''
 		users_who_wrote_reviews = []
 		loop do 
+		puts "\n"
 		puts "Please select a user"
-		user_select_method = db.execute("SELECT users.name FROM users")
+		puts "\n"
+		user_select_method = db.execute("SELECT users.name FROM users JOIN reviews ON reviews.user_id = users.id")
 			user_select_method.each do |item|
 				users_who_wrote_reviews << item
 			end 
-		puts user_select_method
+		users_who_wrote_reviews.flatten!
+		users_who_wrote_reviews.each do |item|
+			puts item
+		end
 		selection_of_user = gets.chomp 
-		break if users_who_wrote_reviews.include? selection_of_user || selection_of_user == 'done'
-		puts "Please select a user"
-		puts "Or type done to exit"
-		selection_of_user = gets.chomp
+		break if users_who_wrote_reviews.include? selection_of_user
 		end 
-			if selection_of_user != 'done'
+			if users_who_wrote_reviews.include? selection_of_user 
 			specific_user_review = db.execute("SELECT users.name, mountains.name, reviews.comments, reviews.today_date
 										FROM users
 										INNER JOIN reviews ON reviews.user_id = users.id
 										INNER JOIN mountains ON reviews.mountain_id = mountains.id
 										WHERE users.name = '#{selection_of_user}'")
+			puts "\n"	
 			puts "Here are the review(s) from #{selection_of_user}: "
 			puts specific_user_review
-			else
-				puts "Thanks"
 			end
+	puts "\n"			
+	puts "Would you like to read another review from a user?"
+	puts "yes or no"
+	another_user_review = gets.chomp.downcase 
+	break if another_user_review == 'no'
+	puts "\n"
+	puts "Would you like to do anything else?"
+			puts "yes or no"
+			anything_esle = gets.chomp.downcase
+			puts "\n"
+			puts "\n"
+	end 
+
+	elsif user_option == 'read reviews of a mountain'
+		mountains_with_reviews = []
+		loop do
+			user_mountain_selection = ''
+			until mountains_with_reviews.include? user_mountain_selection
+			puts "\n"
+			puts "Please select a mountain"
+			puts "\n"
+			mountain_select_method = db.execute("SELECT mountains.name FROM mountains JOIN reviews ON reviews.mountain_id = mountains.id")
+				mountain_select_method.each do |item|
+					mountains_with_reviews << item
+				end 
+			mountains_with_reviews.flatten!
+			mountains_with_reviews.each do |item|
+				puts item
+			end
+			user_mountain_selection = gets.chomp
+			end  
+			specific_mountain_review = db.execute("SELECT users.name, mountains.name, reviews.comments, reviews.today_date
+											FROM users
+											INNER JOIN reviews ON reviews.user_id = users.id
+											INNER JOIN mountains ON reviews.mountain_id = mountains.id
+											WHERE users.name = '#{user_mountain_selection}'")
+				puts "\n"	
+				puts "Here are the review(s) from #{user_mountain_selection}: "
+				puts specific_mountain_review
+			puts "\n"			
+			puts "Would you like to read another review from a user?"
+			puts "yes or no"
+			another_mountain_review = gets.chomp.downcase 
+		break if another_mountain_review == 'no'
+		puts "Would you like to do anything else?"
+			puts "yes or no"
+			anything_esle = gets.chomp.downcase
+			puts "\n"
+			puts "\n"
 	end 
 	
-	else
-		puts "done for now"
+	elsif user_option == 'see if it is snowing'
+		snowing_at_mountain_array = []
+		snowing_at_mountain = db.execute("SELECT mountains.name
+										FROM mountains
+										INNER JOIN reviews ON reviews.mountain_id = mountains.id
+										WHERE reviews.snowing = 'yes' ")
+		snowing_at_mountain.each do |item|
+		snowing_at_mountain_array << item
+		end 
+		snowing_at_mountain_array.flatten!
+		if snowing_at_mountain_array.length <= 0
+			puts "\n"
+			puts "It is not currently snowing at any mountain"
+			puts "\n"
+			puts "Would you like to do anything else?"
+			puts "yes or no"
+			anything_esle = gets.chomp.downcase
+			puts "\n"
+			puts "\n"
+		else
+		snowing_at_mountain_array.each do |item|
+			puts "\n"
+			puts "\n"
+			puts "It has been reported that it is snowing at #{item}"
+			puts "\n"
+			puts "Would you like to do anything else?"
+			puts "yes or no"
+			anything_esle = gets.chomp.downcase
+			puts "\n"
+			puts "\n"
+
+		end
+
+	end 
+
+	elsif user_option == 'see if there is powder'
+		powder_at_mountain_array = []
+		powder_at_mountain = db.execute("SELECT mountains.name
+										FROM mountains
+										INNER JOIN reviews ON reviews.mountain_id = mountains.id
+										WHERE reviews.powder = 'yes' ")
+		powder_at_mountain.each do |item|
+		powder_at_mountain_array << item
+		end 
+		powder_at_mountain_array.flatten!
+		if powder_at_mountain_array.length <= 0
+			puts "\n"
+			puts "There is currently no fresh powder"
+			puts "\n"
+			puts "Would you like to do anything else?"
+			puts "yes or no"
+			anything_esle = gets.chomp.downcase
+			puts "\n"
+			puts "\n"
+		else
+		powder_at_mountain_array.each do |item|
+			puts "\n"
+			puts "It has been reported that there is powder at #{item}"
+			puts "\n"
+			puts "Would you like to do anything else?"
+			puts "yes or no"
+			anything_esle = gets.chomp.downcase
+			puts "\n"
+			puts "\n"
+		end
+
+	end 		 
+	
+	elsif user_option == 'see if there is ice'
+		ice_at_mountain_array = []
+		ice_at_mountain = db.execute("SELECT mountains.name
+										FROM mountains
+										INNER JOIN reviews ON reviews.mountain_id = mountains.id
+										WHERE reviews.ice = 'yes' ")
+		ice_at_mountain.each do |item|
+		ice_at_mountain_array << item
+		end 
+		ice_at_mountain_array.flatten!
+		if ice_at_mountain_array.length <= 0
+			puts "\n"
+			puts "All mountains are currently ice free"
+			puts "\n"
+			puts "Would you like to do anything else?"
+			puts "yes or no"
+			anything_esle = gets.chomp.downcase
+			puts "\n"
+		else
+		ice_at_mountain_array.each do |item|
+			puts "\n"
+			puts "It has been reported that it is icey at #{item}"
+			puts "\n"
+			puts "Would you like to do anything else?"
+			puts "yes or no"
+			anything_esle = gets.chomp.downcase
+			puts "\n"
+			puts "\n"
+		end
+
+	end 
+
+	elsif user_option == 'see if there are long lines'
+		lines_at_mountain_array = []
+		lines_at_mountain = db.execute("SELECT mountains.name
+										FROM mountains
+										INNER JOIN reviews ON reviews.mountain_id = mountains.id
+										WHERE reviews.lines = 'yes' ")
+		lines_at_mountain.each do |item|
+		lines_at_mountain_array << item
+		end 
+		lines_at_mountain_array.flatten!
+		if lines_at_mountain_array.length <= 0
+			puts "\n"
+			puts "The lines are short everywhere"
+			puts "\n"
+			puts "Would you like to do anything else?"
+			puts "yes or no"
+			anything_esle = gets.chomp.downcase
+			puts "\n"
+			puts "\n"
+		else
+		ice_at_mountain_array.each do |item|
+			puts "\n"
+			puts "It has been reported that there are long lines at #{item}"
+			puts "\n"
+			puts "Would you like to do anything else?"
+			puts "yes or no"
+			anything_esle = gets.chomp.downcase
+			puts "\n"
+			puts "\n"
+		end
+	end
+
+	end
+
+end  
+
 
 
 
