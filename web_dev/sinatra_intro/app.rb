@@ -12,9 +12,7 @@ get '/' do
   "#{params[:name]} is #{params[:age]} years old."
 end
 
-get '/contact' do 
-  "1 Main Street Oakland CA 94125"
-end 
+
 # write a GET route with
 # route parameters
 get '/about/:person' do
@@ -26,6 +24,7 @@ get '/:person_1/loves/:person_2' do
   "#{params[:person_1]} loves #{params[:person_2]}"
 end
 
+ 
 # write a GET route that retrieves
 # all student data
 get '/students' do
@@ -46,4 +45,28 @@ end
 get '/students/:id' do
   student = db.execute("SELECT * FROM students WHERE id=?", [params[:id]])[0]
   student.to_s
+end
+
+
+get '/contact' do 
+  "1 Main Street Oakland CA 94125"
+end 
+
+
+get '/greatjob/' do
+  name = params[:name]
+  if name 
+    "Good job #{name}!"
+  else 
+    "Good job!"
+  end
+end 
+
+
+get "/:number_1/plus/:number_2" do 
+  number_1 = params[:number_1]
+  number_2 = params[:number_2]
+  answer = number_1.to_i + number_2.to_i
+ 
+  "#{answer.to_s}"
 end
