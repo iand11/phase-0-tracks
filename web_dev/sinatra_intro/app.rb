@@ -70,3 +70,9 @@ get "/:number_1/plus/:number_2" do
  
   "#{answer.to_s}"
 end
+
+get "/test" do
+"what is your name?"
+name = gets.chomp
+"#{name}"
+end 
