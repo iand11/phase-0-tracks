@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>All Comments</title>
+</head>
+<body>
+<ul>
+    <% @comments.each do |comment| %>
+      <li><%= comment['ID'] %>, <%= comment['comment'] %></li>
+    <% end %>
+  </ul>
+</body>
+</html>
