@@ -17,6 +17,14 @@ get '/students/new' do
   erb :new_student
 end
 
+get '/students/comments' do 
+	erb :comments
+end 
+
+get '/students/comments/show' do 
+	@comments = db.execute("SELECT * FROM comments")
+	erb :show_comments
+end 
 # create new students via
 # a form
 post '/students' do
@@ -24,4 +32,11 @@ post '/students' do
   redirect '/'
 end
 
+post '/comments' do 
+	db.execute("INSERT INTO comments (ID, comment) VALUES (?,?)", [params['ID'], params['comment']])
+	redirect '/students/comments/show'
+end 
+
+
 # add static resources
+
